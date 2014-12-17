@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Gdexpress::VERSION
   spec.authors       = ["Patricio Bruna"]
   spec.email         = ["pbruna@gmail.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = ["GDexpress Wrapper"]
+  spec.summary       = ["Permite comunicarse con la API WS de GDexpress para emitir DTEs en Chile"]
   spec.homepage      = "https://github.com/pbruna/gdexpress"
   spec.license       = "MIT"
 
