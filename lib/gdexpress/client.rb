@@ -96,11 +96,11 @@ module Gdexpress
     end
     
     def make_uri(dte, method)
-      base_uri = "http://#{dte_box}#{API_ENDPOINTS[method.to_sym]}/#{ENVIROMENTS[environment]}/"
+      base_uri = "http://#{dte_box}#{API_ENDPOINTS[method.to_sym]}#{ENVIROMENTS[environment]}/"
 
       # Se tiene que poner 2 veces el rut cuando se pide PDF o XML
       # según lo que sale en http://IP_GD_BOX/api/Core.svc/core/help
-      base_uri << dte.rut_emisor if method.match(/^recover_/)
+      base_uri << "#{dte.rut_emisor}/" if method.match(/^recover_/)
       base_uri << "#{dte.rut_emisor}/#{dte.tipo_dte}/#{dte.folio}"
       URI base_uri
     end
