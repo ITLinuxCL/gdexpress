@@ -4,7 +4,7 @@ module Gdexpress
   class Client
     
     CONFIG_OPTIONS = [:api_token, :dte_box, :environment]
-    ENVIROMENTS = {
+    GD_ENVIRONMENTS = {
       testing: "T",
       production: "P"
     }
@@ -96,7 +96,7 @@ module Gdexpress
     end
     
     def make_uri(dte, method)
-      base_uri = "http://#{dte_box}#{API_ENDPOINTS[method.to_sym]}#{ENVIROMENTS[environment]}/"
+      base_uri = "http://#{dte_box}#{API_ENDPOINTS[method.to_sym]}#{GD_ENVIRONMENTS[environment.to_sym]}/"
 
       # Se tiene que poner 2 veces el rut cuando se pide PDF o XML
       # según lo que sale en http://IP_GD_BOX/api/Core.svc/core/help
