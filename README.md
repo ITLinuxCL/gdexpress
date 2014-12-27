@@ -1,6 +1,6 @@
 # Gdexpress API Client
 
-Un _wrapper_ básico para la API de [Gdexpress](http://gdexpress.cl/) desarrollado en Ruby.
+Un _wrapper_ básico para la API de [Gdexpress](http://gdexpress.cl/) para los que usamos Ruby.
 
 **Gdexpress** es un servicio de emisión de Documentos Tributarios Electrónicos, ```DTE```, para Chile: [Facturación Electrónica en Chile](https://palena.sii.cl/dte/menu.html)
 
