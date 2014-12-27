@@ -4,5 +4,5 @@ end
 class AccessDenied < StandardError
 end
 
-class GdeFailledCall < StandardError
+class GDEFailledCall < StandardError
 end

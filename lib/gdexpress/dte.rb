@@ -23,10 +23,8 @@ module Gdexpress
     end
     
     def normalize_rut
-      tmp_rut = rut_emisor.gsub(/\.|-/,"")
-      cv = tmp_rut.chop
-      tmp_rut.chop!
-      self.rut_emisor = "#{tmp_rut}-#{cv}"
+      tmp_rut = rut_emisor.gsub(/\./,"")
+      tmp_rut.gsub(/k$/, "K")
     end
     
   end

@@ -1,5 +1,3 @@
-require 'nokogiri'
-
 module Gdexpress
   class Client
     
@@ -35,7 +33,7 @@ module Gdexpress
       begin
         response = fiscal_status dte  
       rescue DTENotFound => e
-        # Si no lo encontramos puede que aun haya llegado a
+        # Si no lo encontramos puede que aun no haya llegado a
         # GDexpress Cloud, por eso decimos que no se ha procesado
         return false
       end
@@ -89,10 +87,22 @@ module Gdexpress
     def get(method, dte)
       uri = make_uri dte, method
       response = parse_xml Nokogiri::XML(open(uri, "AuthKey" => api_token))
+      process_response response, uri
+    end
+    
+    def process_response(response, uri = nil)
+      return raise_api_call(response, uri) if response[:result].nil?
       raise AccessDenied, "Invalid AuthKey" if response[:description] == "AccesoDenegado"
       raise DTENotFound, "DTE Not Found" if response[:result] == "14"
-      raise GdeFailledCall, "API Call failed" if response[:result] != "0"
+      raise GDEError, "GDEError: #{response[:description]}" if response[:result] != "0"
       response
+    end
+    
+    def raise_api_call(response, uri = nil)
+      response = Nokogiri::XML(open(uri, "AuthKey" => api_token))
+      error = response.at_css("#content").children[3].text
+      error << "\nURI: #{uri}"
+      raise GDEFailledCall, "API Call failed: #{error}"
     end
     
     def make_uri(dte, method)

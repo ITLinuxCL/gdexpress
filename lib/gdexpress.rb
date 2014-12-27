@@ -1,4 +1,5 @@
 require "open-uri"
+require 'nokogiri'
 
 require "gdexpress/version"
 require "gdexpress/client"

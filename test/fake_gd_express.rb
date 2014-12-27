@@ -1,4 +1,5 @@
 require 'sinatra/base'
+require 'pp'
 
 class FakeGdExpress < Sinatra::Base
   
@@ -9,10 +10,16 @@ class FakeGdExpress < Sinatra::Base
                  "RecoverPdf" => "recover_pdf",
                  "RecoverXml" => "recover_xml"
                }
+               
+  AMBIENTES = [:P, :T]
   
-  get '/api/Core.svc/Core/:method/:ambiente/:rut_emisor/:tipo_dete/:folio' do
+  get '/api/Core.svc/Core/:method/:ambiente/:rut_emisor/:tipo_dte/:folio' do
     return access_denied unless authenticate(env)
     xml_response 200, params[:method], params[:folio]
+  end
+  
+  not_found do
+    return api_call_failed 
   end
 
   private
@@ -26,6 +33,12 @@ class FakeGdExpress < Sinatra::Base
     content_type :xml
     status 200
     File.open(File.dirname(__FILE__) + '/fixtures/' + "access_denied.xml", 'rb').read
+  end
+  
+  def api_call_failed
+    content_type :xml
+    status 200
+    File.open(File.dirname(__FILE__) + '/fixtures/' + "failled_api_call.xml", 'rb').read
   end
   
   def xml_response(response_code, method, folio)

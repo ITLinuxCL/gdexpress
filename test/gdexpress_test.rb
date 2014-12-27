@@ -25,8 +25,8 @@ class GdexpressTest < MiniTest::Test
     @dte.folio = 1022
     assert_raises(DTENotFound) { @gd_client.fiscal_status(@dte) }
     assert_raises(DTENotFound) { @gd_client.tracking(@dte) }
-    assert_raises(DTENotFound) { @gd_client.recover_pdf_base64(@dte) }
-    assert_raises(DTENotFound) { @gd_client.recover_xml(@dte) }
+    #assert_raises(DTENotFound) { @gd_client.recover_pdf_base64(@dte) }
+    #assert_raises(DTENotFound) { @gd_client.recover_xml(@dte) }
   end
   
   def test_processed_should_return_true_or_false_based_on_fiscal_status
@@ -41,6 +41,16 @@ class GdexpressTest < MiniTest::Test
     assert(@gd_client.accepted?(@dte), "Deberia haberla aceptado")
     @dte.folio = 27 # DTE malo
     assert(!@gd_client.accepted?(@dte), "Deberia ser rechazado")
+  end
+  
+  def test_raise_api_call_failled
+    gd_client = Gdexpress::Client.new(
+          api_token: "123456",
+          dte_box: @api_host,
+          environment: :not_valid
+        )
+    
+    assert_raises(GDEFailledCall) { gd_client.fiscal_status(@dte) }
   end
   
 end
