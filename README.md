@@ -38,7 +38,7 @@ O instalalo tu mismo:
 			
  # dte es un objecto que responde a los siguentes métodos:
  # rut_emisor: RUT de empresa que emite el DTE,
- # tipo_dte: mirar http://www.sii.cl/factura_electronica/formato_dte.pdf
+ # tipo_dte: leer http://www.sii.cl/factura_electronica/formato_dte.pdf
  # folio: número del DTE
  dte = OpenStruct.new rut_emisor: 11111111-1, tipo_dte: 33, folio: 28
  
