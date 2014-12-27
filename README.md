@@ -35,6 +35,7 @@ O instalalo tu mismo:
 				dte_box: "192.168.0.1",
 				environment: :testing
 			)
+			
  # dte es un objecto que responde a los siguentes métodos:
  # rut_emisor: RUT de empresa que emite el DTE,
  # tipo_dte: mirar http://www.sii.cl/factura_electronica/formato_dte.pdf
@@ -56,7 +57,7 @@ O instalalo tu mismo:
  gd_client.recover_xml dte
  
  # Devuelve string base64 que representa el PDF del DTE
- pdf64= gd_client.recover_pdf_base64 dte
+ pdf64 = gd_client.recover_pdf_base64 dte
  
  # Decodificas de base64
  pdf = Base64.decode64(pdf64)
@@ -78,8 +79,8 @@ O instalalo tu mismo:
 6. Create new Pull Request
 
 ## Copyright
-Copyright 2014 IT Linux LTDA.
-GdExpress es una marca registrada de GDE S.A.
+* Copyright (c) 2014 IT Linux LTDA.
+* GdExpress es una marca registrada de GDE S.A.
 
 Licensed under the MIT License, you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
